@@ -20,5 +20,10 @@
             <version>${project.version}</version>
         </dependency>
         <!-- Spring Boot dependencies will be added here later as needed -->
+        <dependency>
+            <groupId>jakarta.validation</groupId>
+            <artifactId>jakarta.validation-api</artifactId>
+            <version>3.0.2</version> <!-- or newer -->
+        </dependency>
     </dependencies>
 </project>
