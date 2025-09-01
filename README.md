@@ -1,3 +1,4 @@
+[![CI](https://github.com/Devendra2016/payment-microservice/actions/workflows/ci.yml/badge.svg)](https://github.com/Devendra2016/payment-microservice/actions)
 # Enterprise Payment Service
 
 A production-grade Spring Boot service built with Hexagonal Architecture.
