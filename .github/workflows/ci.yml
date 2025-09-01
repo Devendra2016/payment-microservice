@@ -1,0 +1,35 @@
+name: CI Pipeline # The name of the workflow, shown in the GitHub UI
+
+# Define the events that trigger this workflow
+on:
+  push: # Trigger on any push to the main branch
+    branches: [ main ]
+  pull_request: # Trigger on any PR created or updated that targets the main branch
+    branches: [ main ]
+
+jobs: # A workflow run is made up of one or more jobs
+  quality-checks: # The ID of this job
+    name: Code Quality & Compilation # The display name of the job
+    runs-on: ubuntu-latest # The type of machine to run the job on (a fresh Ubuntu Linux VM)
+
+    steps: # A sequence of tasks that will be executed as part of the job
+      # Step 1: Checkout the code from the repository
+      - name: Checkout code
+        uses: actions/checkout@v4 # This is a pre-built action provided by GitHub to fetch your code
+
+      # Step 2: Set up the correct Java environment
+      - name: Set up JDK 21
+        uses: actions/setup-java@v4 # Another pre-built action
+        with: # Parameters for the action
+          java-version: '21'
+          distribution: 'temurin' # Eclipse Temurin is a popular, production-grade JDK distribution
+          cache: 'maven' # This is a HUGE performance win. It caches Maven dependencies between runs.
+
+      # Step 3: Run the core quality checks
+      - name: Build with Maven
+        run: mvn --batch-mode clean compile checkstyle:check spotbugs:check
+        # --batch-mode: Reduces log output, makes it cleaner.
+        # clean: Deletes the target/ folder to ensure a fresh, clean build.
+        # compile: Compiles the source code. This is the most basic check: does it compile?
+        # checkstyle:check: Executes Checkstyle to enforce code style rules. Fails the build on violation.
+        # spotbugs:check: Executes SpotBugs to look for potential bugs. Fails the build on findings.
