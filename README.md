@@ -18,3 +18,12 @@ From the root directory (`payment-service/`), run:
 
 ```bash
 mvn clean install
+
+## Logging
+
+The application uses structured JSON logging. Each log entry includes:
+- A `correlationId` to trace requests across services.
+- The `application` name.
+- The `environment` profile.
+
+To trace a request, provide an `X-Correlation-ID` header. If not provided, one will be generated automatically and returned in the response headers.

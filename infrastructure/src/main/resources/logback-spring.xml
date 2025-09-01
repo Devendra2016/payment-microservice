@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <include resource="org/springframework/boot/logging/logback/defaults.xml"/>
+
+    <!-- Define a property for the application name -->
+    <springProperty name="APP_NAME" source="spring.application.name" defaultValue="payment-service"/>
+
+    <!-- Appender to output JSON to the console -->
+    <appender name="JSON" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder class="net.logstash.logback.encoder.LogstashEncoder">
+            <includeContext>true</includeContext>
+            <timeZone>UTC</timeZone>
+            <!-- Include the application name and profile in every log message -->
+            <customFields>{"application":"${APP_NAME}", "environment":"${ENV:-local}"}</customFields>
+            <!-- Explicitly include the correlationId from the MDC -->
+            <includeMdcKeyName>correlationId</includeMdcKeyName>
+        </encoder>
+    </appender>
+
+    <!-- Override the default Spring Boot console appender with our JSON one -->
+    <root level="INFO">
+        <appender-ref ref="JSON" />
+    </root>
+</configuration>

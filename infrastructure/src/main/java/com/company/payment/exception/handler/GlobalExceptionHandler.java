@@ -15,7 +15,7 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ProblemDetail handleValidationError(MethodArgumentNotValidException ex) {
-        ProblemDetail problemDetail = ProblemDetail.forStatusAndDetail(HttpStatus.BAD_REQUEST , "Validation Failed");
+        ProblemDetail problemDetail = ProblemDetail.forStatusAndDetail(HttpStatus.BAD_REQUEST, "Validation Failed");
         problemDetail.setTitle("Invalid request content");
         problemDetail.setType(URI.create("https://api.payments.com/errors/validation"));
         return problemDetail;

@@ -1,1 +1,3 @@
+com\company\payment\exception\handler\GlobalExceptionHandler.class
+com\company\payment\config\logging\CorrelationIdFilter.class
 com\company\payment\payment_service\PaymentServiceApplication.class
