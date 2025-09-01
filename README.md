@@ -28,3 +28,11 @@ The application uses structured JSON logging. Each log entry includes:
 - The `environment` profile.
 
 To trace a request, provide an `X-Correlation-ID` header. If not provided, one will be generated automatically and returned in the response headers.
+## Code Review Checklist
+
+Every Pull Request should be reviewed against the following criteria:
+- **Architecture:** Does the change respect the Hexagonal Architecture boundaries? (e.g., no business logic in controllers, no framework code in the domain)
+- **Code Quality:** Is the code clean, readable, and well-commented? Does it pass static analysis (`mvn checkstyle:check spotbugs:check`)?
+- **Tests:** Are there appropriate tests for the change? Do existing tests pass?
+- **Documentation:** Is the OpenAPI spec updated? Are the CHANGELOG and README updated if necessary?
+- **Functionality:** Does the change actually do what it says it does?
