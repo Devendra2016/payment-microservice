@@ -9,7 +9,7 @@ WORKDIR /app
 COPY mvnw .
 COPY .mvn/ .mvn/
 COPY pom.xml .
-
+RUN chmod +x mvnw
 # Copy the module POMs
 COPY domain/pom.xml domain/
 COPY application/pom.xml application/
