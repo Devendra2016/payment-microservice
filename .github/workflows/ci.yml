@@ -7,6 +7,7 @@ on:
   pull_request: # Trigger on any PR created or updated that targets the main branch
     branches: [ main ]
 
+
 jobs: # A workflow run is made up of one or more jobs
   quality-checks: # The ID of this job
     name: Code Quality & Compilation # The display name of the job
@@ -24,6 +25,10 @@ jobs: # A workflow run is made up of one or more jobs
           java-version: '21'
           distribution: 'temurin' # Eclipse Temurin is a popular, production-grade JDK distribution
           cache: 'maven' # This is a HUGE performance win. It caches Maven dependencies between runs.
+      - name: Setup Maven
+        uses: stCarolas/setup-maven@v4
+        with:
+          maven-version: '3.9.6'
   docker-build:
     name: Build Docker Image
     runs-on: ubuntu-latest
