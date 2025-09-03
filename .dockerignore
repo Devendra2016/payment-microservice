@@ -1,0 +1,21 @@
+# Ignore everything
+*
+
+# Allow these specific files and directories
+!mvnw
+!.mvn/
+!pom.xml
+!domain/
+!application/
+!infrastructure/
+
+# Explicitly ignore these
+**/target/
+.git/
+.gitignore
+.gitattributes
+README.md
+Dockerfile
+.dockerignore
+**/application-*.yml
+**/secrets/
