@@ -24,13 +24,27 @@
 		<module>infrastructure</module>
 	</modules>
 
+	<!-- ✅ Single properties block -->
 	<properties>
 		<java.version>21</java.version>
+		<maven.compiler.release>21</maven.compiler.release>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 	</properties>
 
 	<build>
 		<pluginManagement>
 			<plugins>
+				<!-- Compiler Plugin -->
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-compiler-plugin</artifactId>
+					<version>3.13.0</version>
+					<configuration>
+						<release>${maven.compiler.release}</release>
+					</configuration>
+				</plugin>
+
 				<!-- Checkstyle -->
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
@@ -67,16 +81,22 @@
 						</execution>
 					</executions>
 				</plugin>
+
+				<!-- Spring Boot Plugin -->
 				<plugin>
-					<groupId>org.apache.maven.plugins</groupId>
-					<artifactId>maven-compiler-plugin</artifactId>
-					<version>3.13.0</version>
-					<configuration>
-						<release>21</release>
-					</configuration>
+					<groupId>org.springframework.boot</groupId>
+					<artifactId>spring-boot-maven-plugin</artifactId>
+					<version>${project.parent.version}</version>
 				</plugin>
 			</plugins>
 		</pluginManagement>
-	</build>
 
+		<!-- ✅ Apply compiler plugin to all modules -->
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+			</plugin>
+		</plugins>
+	</build>
 </project>
