@@ -24,7 +24,7 @@ RUN ./mvnw dependency:go-offline -B
 COPY domain/src/ domain/src/
 COPY application/src/ application/src/
 COPY infrastructure/src/ infrastructure/src/
-
+ENV TZ=Asia/Kolkata
 # Package the application, skipping tests (they run in CI)
 RUN ./mvnw package -DskipTests
 
